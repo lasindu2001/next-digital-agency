@@ -24,24 +24,19 @@ const SingleBlog = async ({ params }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.imgContainer}>
-        <Image
-          src="https://images.pexels.com/photos/38537/woodland-road-falling-leaf-natural-38537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-          fill
-          className={styles.img}
-        />
-      </div>
-      <div className={styles.textContainer}>
-        <h1 className={styles.title}>{post?.title}</h1>
-        <div className={styles.detail}>
+      {post.img &&
+        <div className={styles.imgContainer}>
           <Image
-            src="https://images.pexels.com/photos/38537/woodland-road-falling-leaf-natural-38537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            src={post.img}
             alt=""
-            className={styles.avatar}
-            width={50}
-            height={50}
+            fill
+            className={styles.img}
           />
+        </div>
+      }
+      <div className={styles.textContainer}>
+        <h1 className={styles.title}>{post.title}</h1>
+        <div className={styles.detail}>
           {post && (
             <Suspense fallback={<div>Loading...</div>}>
               <PostUser userId={post.userId} />
@@ -50,11 +45,11 @@ const SingleBlog = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              10.06.2024
+              {post.createdAt.toString().slice(4, 16)}
             </span>
           </div>
         </div>
-        <div className={styles.content}>{post?.body}</div>
+        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
   )
