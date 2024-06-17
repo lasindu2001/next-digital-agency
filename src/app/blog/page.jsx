@@ -11,6 +11,15 @@ import { getPosts } from '@/lib/data'
 //   return res.json()
 // }
 
+// MONGODB FETCH DATA
+// const getData = async () => {
+//   const res = await fetch("http://localhost:3000/api/blog", {next:{revalidate:3600}});
+//   if (!res.ok) {
+//     throw new Error("Something went wrong");
+//   }
+//   return res.json();
+// };
+
 const Blog = async () => {
   // FETCH DATA WITH USING AN API
   // const posts = await getData()
@@ -18,10 +27,13 @@ const Blog = async () => {
   // FETCH DATA WITHOUT USING AN API
   const posts = await getPosts()
 
+  // MONGODB FETCH DATA
+  // const posts = await getData();
+
   return (
     <div className={styles.container}>
       {posts.map((post) => (
-        <div className={styles.post}>
+        <div className={styles.post} key={post.id}>
           <PostCard post={post}/>
         </div>
       ))}
