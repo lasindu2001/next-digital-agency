@@ -53,7 +53,7 @@ export const handleLogout = async () => {
     await signOut();
 };
 
-export const register = async (formData) => {
+export const register = async (previousState, formData) => {
     const { username, email, password, img, passwordRepeat } = Object.fromEntries(formData);
     if (password !== passwordRepeat) {
         return { error: "Passwords do not match" };
