@@ -11,7 +11,7 @@ import bcrypt from 'bcrypt'
 //     console.log("Hello World");
 // }
 
-export const addPost = async (formData) => {
+export const addPost = async (previousState, formData) => {
     // const title = formData.get("title");
     // const desc = formData.get("desc");
     // const slug = formData.get("slug");
