@@ -4,6 +4,7 @@ import { User } from "./models";
 import { connectToDb } from "./utils";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import { authConfig } from "./auth.config";
 
 const login = async (credentials) => {
     try {
@@ -25,6 +26,7 @@ const login = async (credentials) => {
 export const {
     handlers: { GET, POST }, auth, signIn, signOut
 } = NextAuth({
+    ...authConfig,
     providers: [
         GitHub({
             clientId: process.env.GITHUB_CLIENT_ID,
@@ -62,5 +64,6 @@ export const {
             }
             return true;
         },
+        ...authConfig.callbacks,
     },
 })
